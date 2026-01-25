@@ -9,6 +9,15 @@ try:
 except:
     st.error("API Key not found! Check your secrets.toml file.")
 
+try:
+    response = model.generate_content(prompt)
+    st.markdown(response.text)
+except Exception as e:
+    if "429" in str(e):
+        st.error("🚨 Daily limit reached! Please try again tomorrow or contact me for a private demo.")
+    else:
+        st.error("⚠️ An error occurred. Please try a shorter text or check back later.")
+
 # 2. Page Configuration
 st.set_page_config(page_title="Med-Simplify Pro", page_icon="🏥", layout="centered")
 
