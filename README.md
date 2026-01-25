@@ -2,13 +2,23 @@
 Med-Simplify AI is a specialized health literacy tool designed to transform complex, jargon-heavy medical reports into clear, actionable, and patient-friendly insights. Built by a Biomedical Science student, this app aims to empower patients to have more informed and confident conversations with their healthcare providers.
 
 ## Key Features
-- Visual Health "Traffic Light" System: Instantly categorizes report findings into Green (Normal), Yellow (Monitor), or Red (Urgent) status for immediate clarity.
+- **Visual Health "Traffic Light" System**: Instantly categorizes report findings into Green (Normal), Yellow (Monitor), or Red (Urgent) status for immediate clarity.
 
-- Plain Language Translation: Uses advanced AI to "de-jargonize" medical terms into a summary a 10-year-old could understand.
+- **Plain Language Translation**: Uses advanced AI to "de-jargonize" medical terms into a summary a 10-year-old could understand.
 
-- Actionable "Questions for My Doctor": Automatically generates a list of three targeted questions based on the specific results to prepare patients for their next consultation.
+- **Actionable "Questions for My Doctor"**: Automatically generates a list of three targeted questions based on the specific results to prepare patients for their next consultation.
 
-- Secure & Privacy-Conscious: Built with a "zero-retention" philosophy, encouraging users to remove personal identifiers before analysis.
+- **Secure & Privacy-Conscious**: Built with a "zero-retention" philosophy, encouraging users to remove personal identifiers before analysis.
+
+- **Dual-Column Layout**: Professional UI design that separates input and instructions.
+  
+- **Sample Data Loader**: A 'One-Click' test feature for judges and recruiters to see instant results.
+  
+- **Defensive Error Handling**: Custom alerts for API rate limits (20 RPD) to prevent app crashes.
+  
+- **Sidebar Security Panel**: Clear communication of data privacy and PII (Personally Identifiable Information) safety.
+
+## 🛠️ Tech Stack & Skills Demonstrated
 
 ## Technology Stack
 - Frontend: Streamlit (Python-based web framework)
@@ -18,6 +28,15 @@ Med-Simplify AI is a specialized health literacy tool designed to transform comp
 - Security: Encrypted secrets management for API protection
 
 - Language: Python 3.10+
+
+## Skills Demonstrated
+- **Python & Streamlit**: UI/UX design and frontend development.
+  
+- **Prompt Engineering**: Specialized 'Medical Translator' system instructions.
+  
+- **API Integration**: Secure connection to Google Gemini 2.5 Flash.
+  
+- **Data Privacy**: Implementation of stateless architecture for HIPAA-conscious prototyping.
 
 ## Security & Privacy
 - API Security: This project utilizes Streamlit's encrypted Secrets management and a .gitignore protocol to ensure API keys are never exposed in public version control.
