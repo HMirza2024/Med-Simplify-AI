@@ -16,7 +16,7 @@ except Exception as e:
     if "429" in str(e):
         st.error("🚨 Daily limit reached! Please try again tomorrow or contact me for a private demo.")
     else:
-        st.error("⚠️ An error occurred. Please try a shorter text or check back later.")
+        st.error("⚠️ Please remove all personally identifiable information (PII) before analysis.")
 
 # 2. Page Configuration
 st.set_page_config(page_title="Med-Simplify Pro", page_icon="🏥", layout="centered")
