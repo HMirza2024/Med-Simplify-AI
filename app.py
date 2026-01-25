@@ -23,7 +23,7 @@ medical_text = st.text_area("Paste your medical report or lab results here:", he
 if st.button("Analyze & Simplify"):
     if medical_text:
         with st.spinner("Analyzing data..."):
-            model = genai.GenerativeModel('gemini-1.5-flash')
+            model = genai.GenerativeModel('gemini-2.5-flash')
             
             # This 'System Prompt' is what makes your project "Top 10" quality
             prompt = f"""
