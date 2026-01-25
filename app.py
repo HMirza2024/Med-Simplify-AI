@@ -17,7 +17,7 @@ st.markdown("### Turning complex medical reports into clear, actionable steps.")
 
 # 3. User Input Section
 st.divider()
-medical_text = st.text_area("Paste your medical report or lab results here:", height=200, placeholder="Example: Hemoglobin 10.5 g/dL, TSH 5.2 mIU/L...")
+medical_text = st.text_area("Paste your medical report or lab results here: \nPlease remove all personally identifiable information (PII) before analysis!", height=200, placeholder="Example: Hemoglobin 10.5 g/dL, TSH 5.2 mIU/L...")
 
 # 4. The Logic (The "Brain")
 if st.button("Analyze & Simplify"):
