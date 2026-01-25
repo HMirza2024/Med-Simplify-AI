@@ -18,6 +18,14 @@ except Exception as e:
     else:
         st.error("⚠️ Please remove all personally identifiable information (PII) before analysis.")
 
+with st.sidebar:
+    st.header("🔒 Privacy & Security")
+    st.info("""
+    - **No Data Storage**: This app is stateless and does not store your text.
+    - **De-identify**: Please remove names/IDs before pasting.
+    - **Encryption**: Data is sent via secure HTTPS to the Gemini API.
+    """)
+
 # 2. Page Configuration
 st.set_page_config(page_title="Med-Simplify Pro", page_icon="🏥", layout="centered")
 
