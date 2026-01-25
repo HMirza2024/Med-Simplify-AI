@@ -40,7 +40,7 @@ with st.sidebar:
     with st.expander("What should I paste?"):
         st.write("Blood tests, MRI summaries, discharge notes, or biopsy reports.")
     
-    st.success("Target: Data Analyst Portfolio 2026")
+    st.success("Health is not just the absence of illness, but the quiet strength that lets you live fully, think clearly, and grow every day")
 
 # 4. Main Page Layout
 st.title("Med-Simplify AI")
