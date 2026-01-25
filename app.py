@@ -12,13 +12,19 @@ except:
 st.set_page_config(page_title="Med-Simplify Pro", page_icon="🏥", layout="wide")
 
 # Custom CSS to make it look cleaner
+# Updated for Python 3.13 and Streamlit 1.41+
 st.markdown("""
     <style>
     .main { background-color: #f8f9fa; }
-    .stButton>button { width: 100%; border-radius: 20px; height: 3em; background-color: #007bff; color: white; }
+    .stButton>button { 
+        width: 100%; 
+        border-radius: 20px; 
+        height: 3em; 
+        background-color: #007bff; 
+        color: white; 
+    }
     </style>
-    """, unsafe_allow_value=True)
-
+    """, unsafe_allow_html=True) # Fixed parameter name
 # 3. Sidebar Design (The "Control Panel")
 with st.sidebar:
     st.title("🏥 Navigation")
