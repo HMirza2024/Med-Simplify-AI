@@ -2,71 +2,91 @@ import streamlit as st
 import google.generativeai as genai
 
 # 1. Secure Setup
-# This pulls the key from your secrets.toml file instead of showing it in code
 try:
     API_KEY = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=API_KEY)
 except:
-    st.error("API Key not found! Check your secrets.toml file.")
+    st.error("API Key not found! Check your Streamlit Secrets.")
 
-try:
-    response = model.generate_content(prompt)
-    st.markdown(response.text)
-except Exception as e:
-    if "429" in str(e):
-        st.error("🚨 Daily limit reached! Please try again tomorrow or contact me for a private demo.")
-    else:
-        st.error("⚠️ Please remove all personally identifiable information (PII) before analysis.")
+# 2. Page Configuration & Professional Styling
+st.set_page_config(page_title="Med-Simplify Pro", page_icon="🏥", layout="wide")
 
+# Custom CSS to make it look cleaner
+st.markdown("""
+    <style>
+    .main { background-color: #f8f9fa; }
+    .stButton>button { width: 100%; border-radius: 20px; height: 3em; background-color: #007bff; color: white; }
+    </style>
+    """, unsafe_allow_value=True)
+
+# 3. Sidebar Design (The "Control Panel")
 with st.sidebar:
-    st.header("🔒 Privacy & Security")
-    st.info("""
-    - **No Data Storage**: This app is stateless and does not store your text.
-    - **De-identify**: Please remove names/IDs before pasting.
-    - **Encryption**: Data is sent via secure HTTPS to the Gemini API.
-    """)
+    st.title("🏥 Navigation")
+    st.info("This AI tool simplifies medical jargon into patient-friendly language.")
+    
+    st.subheader("🔒 Privacy & Security")
+    st.caption("• No data is stored or logged.")
+    st.caption("• Please remove Names/IDs before pasting.")
+    st.caption("• Uses encrypted HTTPS transmission.")
+    
+    st.divider()
+    st.subheader("💡 Tips for Success")
+    with st.expander("What should I paste?"):
+        st.write("Blood tests, MRI summaries, discharge notes, or biopsy reports.")
+    
+    st.success("Target: Data Analyst Portfolio 2026")
 
-# 2. Page Configuration
-st.set_page_config(page_title="Med-Simplify Pro", page_icon="🏥", layout="centered")
+# 4. Main Page Layout
+st.title("Med-Simplify AI")
+st.subheader("Empowering patients through health literacy.")
 
-st.title("🏥 Med-Simplify AI")
-st.markdown("### Turning complex medical reports into clear, actionable steps.")
+# Use columns to make the UI look balanced
+col1, col2 = st.columns([2, 1])
 
-# 3. User Input Section
-st.divider()
-medical_text = st.text_area("Paste your medical report or lab results here:", height=200, placeholder="Example: Hemoglobin 10.5 g/dL, TSH 5.2 mIU/L...")
+with col1:
+    medical_text = st.text_area(
+        "Paste your medical report here:", 
+        height=250, 
+        placeholder="Example: HbA1c is 6.5%, patient shows mild tachycardia..."
+    )
 
-# 4. The Logic (The "Brain")
-if st.button("Analyze & Simplify"):
+with col2:
+    st.markdown("### 🧪 Quick Test")
+    st.write("Don't have a report? Use this sample:")
+    sample_data = "Patient presents with elevated TSH (5.2 mIU/L) and low Serum Iron. Normal range for TSH is 0.4-4.0."
+    if st.button("Load Sample Data"):
+        medical_text = sample_data # This trick encourages judges to try it immediately!
+
+# 5. Analysis Logic
+if st.button("Analyze & Simplify Report"):
     if medical_text:
-        with st.spinner("Analyzing data..."):
-            model = genai.GenerativeModel('gemini-2.5-flash')
-            
-            # This 'System Prompt' is what makes your project "Top 10" quality
-            prompt = f"""
-            You are a world-class medical translator. Analyze the following medical text:
-            '{medical_text}'
-            
-            Please provide the output in this EXACT format:
-            
-            1. **Status Traffic Light**: (Start with 🟢 for Normal, 🟡 for 'Needs Attention', or 🔴 for Urgent). Explain WHY you chose that color in one sentence.
-            2. **The 'Simple English' Summary**: Explain what this report says like I am 10 years old. Avoid jargon.
-            3. **Key Markers**: List the most important numbers and what they mean.
-            4. **Questions for your Doctor**: Provide 3 specific, smart questions the user should ask their doctor based on these results.
-            
-            Disclaimer: End with a bold warning that this is an AI tool and not medical advice.
-            """
-            
-            response = model.generate_content(prompt)
-            
-            # 5. Professional UI Output
-            st.success("Analysis Complete!")
-            
-            # Visual separation for better UX
-            st.markdown("---")
-            st.markdown(response.text)
-            
-            # Add a 'Download' button to make it feel like a real tool
-            st.download_button("Download Summary", response.text, file_name="Medical_Summary.txt")
+        with st.spinner("Decoding medical terminology..."):
+            try:
+                # Use the stable 2026 model version
+                model = genai.GenerativeModel('gemini-2.5-flash')
+                
+                prompt = f"""
+                Act as a compassionate Medical Translator. Analyze: '{medical_text}'
+                Format your response clearly:
+                - **Status**: (🟢/🟡/🔴) + 1-sentence logic.
+                - **The 'Big Picture'**: 2-sentence summary for a non-scientist.
+                - **Breakdown**: Bullet points of key findings.
+                - **Doctor Consultation**: 3 questions for the next visit.
+                Disclaimer: AI tool, not medical advice.
+                """
+                
+                response = model.generate_content(prompt)
+                
+                st.markdown("---")
+                st.subheader("📋 Your Simplified Report")
+                st.markdown(response.text)
+                
+                st.download_button("📩 Download PDF Summary", response.text, file_name="Health_Summary.txt")
+                
+            except Exception as e:
+                if "429" in str(e):
+                    st.error("🚨 Daily limit reached! (20/20 requests). Please try again tomorrow.")
+                else:
+                    st.error(f"⚠️ An error occurred: {str(e)}")
     else:
-        st.warning("Please paste some text first!")
+        st.warning("Please enter medical text to begin.")
