@@ -66,3 +66,25 @@ I am a Biomedical Science student (Class of 2026) passionate about the intersect
 Portfolio: [HMirza2024]
 
 Project Goal: Created as a capstone/competition project to improve patient-doctor communication.
+
+
+## Installation & Setup
+This application was developed as part of the Techsprint Techathon. While the live demo is currently in maintenance mode for security reasons, you can easily run it locally by following these steps:
+
+### 1. Prerequisites
+- Python 3.9 or higher.
+- A Google Gemini API Key (You can get one for free at the Google AI Studio).
+
+### 2. Clone the Repository
+- git clone
+
+### 3. Install Dependencies
+- pip install -r requirements.txt
+  
+### 4. Configuration
+To keep the application secure, this project uses Streamlit Secrets. Create a folder named .streamlit in your project root and add a secrets.toml file inside it:
+
+### 5. Run the Application
+- streamlit run app.py
+#### Security Note
+This project follows security best practices by never "hard-coding" API keys directly into the source code. It utilizes environment variables and Streamlit's built-in secrets management to ensure sensitive credentials remain private.
