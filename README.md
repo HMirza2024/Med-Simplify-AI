@@ -1,7 +1,5 @@
 # 🏥 Med-Simplify AI: Bridging the Health Literacy Gap
 
-**Live App**: https://med-simplify-ai-fbkv9yy3yfr8xc26dckm7o.streamlit.app/ 
-
 Med-Simplify AI is a specialized health literacy tool designed to transform complex, jargon-heavy medical reports into clear, actionable, and patient-friendly insights. Built by a Biomedical Science student, this app aims to empower patients to have more informed and confident conversations with their healthcare providers.
 
 ## Key Features
